@@ -20,7 +20,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
+# from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import roc_curve
@@ -60,7 +61,7 @@ len(X)
 print(np.unique(Y, return_counts=True))
 
 #Split the data and keep 20% back for testing later
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.20)
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.20, random_state=42, stratify=Y)
 print("Train length", len(X_train))
 print("Test length", len(X_test))
 
@@ -69,7 +70,14 @@ print("Test length", len(X_test))
 # Now we fit the machine learning model we're going to use to our X and Y data.
 
 # %%
-model = LogisticRegression(C=1/0.1, solver="liblinear").fit(X_train, Y_train)
+# model = LogisticRegression(C=1/0.1, solver="liblinear").fit(X_train, Y_train)
+model = DecisionTreeClassifier(
+    criterion="gini",      # or "entropy", "log_loss"
+    max_depth=None,        # control depth to reduce overfitting
+    min_samples_split=2,
+    min_samples_leaf=1,
+    random_state=42
+).fit(X_train, Y_train)
 
 # %% [markdown]
 # ## Evaluate model
