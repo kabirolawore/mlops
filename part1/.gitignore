@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+/mlops_practicals/gant.ipynb
+./mlops_practicals/gant.ipynb

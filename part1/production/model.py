@@ -127,5 +127,3 @@ print('AUC', auc)
 # ## Done
 # 
 # That's our first experiment done and we now have a model we're happy with. Go back to the practical document to continue.
-
-
